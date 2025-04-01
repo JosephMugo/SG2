@@ -38,11 +38,11 @@ Description: This Java program reads a CSV file provided by the user and extract
    - pathname: https://stackoverflow.com/questions/1693020/how-to-specify-filepath-in-java
 - - - - - - - - - - - - - - - - - - - -
 [How to Run:]
-1. Import all the java library below.
+Requirements:
+    Java 17+
+1. Open project in NetBeans
 2. Add ".CSV" file to the same root directory as the java program.
-3. Run the Java program using the following command:
-    'java Main.java'
-or pressing the run button/green triangle above.
+3. Run the Java program by pressing the run button/green triangle above.
 4. Follow the on-screen instructions to enter the name of the CSV file.
 5. The program will process the CSV file and generate the output files:
     - 'Species.txt'
@@ -62,6 +62,7 @@ public class SG2 {
         System.out.println("Please input a file");
         String fileUser = consoleScanner.nextLine();
         validateInput(fileUser, consoleScanner);
+        scanner.close();
     }
 
     public static void promptUserEnterKey(Scanner s) {
@@ -282,7 +283,9 @@ public class SG2 {
                 System.out.println(String.join(", ", reportDate.get(key)));
             }
         }
-
+        
+        promptUserEnterKey(scanner);
+        scanner.close();
         return true;
     }
 }
