@@ -37,6 +37,10 @@ Description: This Java program reads a CSV file provided by the user and extract
    - split(“,“) function: https://www.geeksforgeeks.org/split-string-java-examples/
    - pathname: https://stackoverflow.com/questions/1693020/how-to-specify-filepath-in-java
 - - - - - - - - - - - - - - - - - - - -
+[Major Revision Dates]
+    - 03/21/2025
+    - 03/31/2025
+- - - - - - - - - - - - - - - - - - - -
 [How to Run:]
 Requirements:
     Java 17+
@@ -153,6 +157,7 @@ public class SG2 {
                 lineNumber++;
                 List<String> lineHolder = new ArrayList<>();
                 double highestAbd = 0;
+                List<Integer> highestAbdIndex = new ArrayList<>();
                 if (line.trim().isEmpty())
                 {
                     break;
@@ -227,7 +232,21 @@ public class SG2 {
                         if (dateListValue > 0) {
                             lineHolder.add("1");
                         }
+                        // Track highest abundance value and corresponding column indices
+                        if (dateListValue > highestAbd) {
+                            highestAbd = dateListValue;
+                            highestAbdIndex.clear();
+                            highestAbdIndex.add(x);
+                        } else if (dateListValue == highestAbd) {
+                            highestAbdIndex.add(x);
+                        }
                     }
+                    System.out.print(dateList[0] + " had the highest abundance of " + highestAbd + " in species: ");
+                    List<String> highestSpecies = new ArrayList<>();
+                    for (int index : highestAbdIndex) {
+                        highestSpecies.add(speciesList[index-1]); // Get species name based on column index
+                    }
+                    System.out.println(String.join(", ", highestSpecies));
                     // if numbers are valid then add to dates found count
                     numDates++;
                     PA.add(lineHolder);
@@ -283,8 +302,9 @@ public class SG2 {
                 System.out.println(String.join(", ", reportDate.get(key)));
             }
         }
-        
-        promptUserEnterKey(scanner);
+
+        System.out.println("Thank you for using the program all of its' tasks have been completed. Please press Enter to end the program.");
+        scanner.nextLine();
         scanner.close();
         return true;
     }
