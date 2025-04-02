@@ -53,6 +53,13 @@ Requirements:
     - 'DatedData.txt'
     - 'PresentAbsent.txt'
 - - - - - - - - - - - - - - - - - - - -
+[External File]
+How to format the external file:
+    - The file must begin with a ','. Then a name can be added using: English letters, periods, numbers, blanks, and underscores.
+    - The name cannot contain a comma. The number of names will determine the number of rows. There must be a number of rows between 1-999.
+    - Each row must begin with a date(formatted as: MM/DD/YYYY) followed by a comma ','. Then a positive real number that does not cannot contain a negative or a fraction.
+    - This row of numbers must be split by a comma and end with a real number.  There must be an equal number of names and numbers.
+- - - - - - - - - - - - - - - - - - - -
 */
 
 import java.io.*;
